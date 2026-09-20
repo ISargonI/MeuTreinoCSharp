@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaPreco")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36c896ecc32e2985570ee0845260f105e2df3268")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaPreco")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaPreco")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
