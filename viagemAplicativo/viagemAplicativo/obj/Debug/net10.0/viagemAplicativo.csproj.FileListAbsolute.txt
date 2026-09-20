@@ -1,0 +1,14 @@
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\bin\Debug\net10.0\viagemAplicativo.exe
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\bin\Debug\net10.0\viagemAplicativo.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\bin\Debug\net10.0\viagemAplicativo.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\bin\Debug\net10.0\viagemAplicativo.dll
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\bin\Debug\net10.0\viagemAplicativo.pdb
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\viagemAplicativo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\viagemAplicativo.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\viagemAplicativo.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\viagemAplicativo.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\viagemAplicativo.dll
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\refint\viagemAplicativo.dll
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\viagemAplicativo.pdb
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\viagemAplicativo.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\viagemAplicativo\viagemAplicativo\obj\Debug\net10.0\ref\viagemAplicativo.dll

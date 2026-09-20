@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "LocacaoBicicletas1/1.0.0": {
+        "runtime": {
+          "LocacaoBicicletas1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LocacaoBicicletas1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

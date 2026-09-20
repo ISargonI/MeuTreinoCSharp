@@ -1,0 +1,14 @@
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\bin\Debug\net10.0\SistemaPreco.exe
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\bin\Debug\net10.0\SistemaPreco.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\bin\Debug\net10.0\SistemaPreco.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\bin\Debug\net10.0\SistemaPreco.dll
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\bin\Debug\net10.0\SistemaPreco.pdb
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\SistemaPreco.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\SistemaPreco.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\SistemaPreco.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\SistemaPreco.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\SistemaPreco.dll
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\refint\SistemaPreco.dll
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\SistemaPreco.pdb
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\SistemaPreco.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\SistemaPreco\obj\Debug\net10.0\ref\SistemaPreco.dll

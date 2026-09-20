@@ -1,0 +1,14 @@
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\itemEstoque.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\itemEstoque.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\itemEstoque.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\itemEstoque.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\bin\Debug\net10.0\itemEstoque.exe
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\bin\Debug\net10.0\itemEstoque.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\bin\Debug\net10.0\itemEstoque.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\bin\Debug\net10.0\itemEstoque.dll
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\bin\Debug\net10.0\itemEstoque.pdb
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\itemEstoque.dll
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\refint\itemEstoque.dll
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\itemEstoque.pdb
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\itemEstoque.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\itemEstoque\itemEstoque\obj\Debug\net10.0\ref\itemEstoque.dll

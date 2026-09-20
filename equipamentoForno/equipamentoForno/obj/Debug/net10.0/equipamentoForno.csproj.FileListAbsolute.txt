@@ -1,0 +1,14 @@
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\equipamentoForno.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\equipamentoForno.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\equipamentoForno.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\equipamentoForno.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\bin\Debug\net10.0\equipamentoForno.exe
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\bin\Debug\net10.0\equipamentoForno.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\bin\Debug\net10.0\equipamentoForno.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\bin\Debug\net10.0\equipamentoForno.dll
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\bin\Debug\net10.0\equipamentoForno.pdb
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\equipamentoForno.dll
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\refint\equipamentoForno.dll
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\equipamentoForno.pdb
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\equipamentoForno.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\equipamentoForno\equipamentoForno\obj\Debug\net10.0\ref\equipamentoForno.dll

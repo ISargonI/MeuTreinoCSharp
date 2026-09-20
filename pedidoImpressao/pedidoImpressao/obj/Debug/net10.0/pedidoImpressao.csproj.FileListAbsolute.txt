@@ -1,0 +1,14 @@
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\bin\Debug\net10.0\pedidoImpressao.exe
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\bin\Debug\net10.0\pedidoImpressao.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\bin\Debug\net10.0\pedidoImpressao.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\bin\Debug\net10.0\pedidoImpressao.dll
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\bin\Debug\net10.0\pedidoImpressao.pdb
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\pedidoImpressao.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\pedidoImpressao.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\pedidoImpressao.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\pedidoImpressao.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\pedidoImpressao.dll
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\refint\pedidoImpressao.dll
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\pedidoImpressao.pdb
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\pedidoImpressao.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\pedidoImpressao\pedidoImpressao\obj\Debug\net10.0\ref\pedidoImpressao.dll

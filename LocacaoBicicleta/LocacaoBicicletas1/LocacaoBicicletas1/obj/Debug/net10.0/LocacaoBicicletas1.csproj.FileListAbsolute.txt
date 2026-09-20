@@ -1,0 +1,14 @@
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\bin\Debug\net10.0\LocacaoBicicletas1.exe
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\bin\Debug\net10.0\LocacaoBicicletas1.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\bin\Debug\net10.0\LocacaoBicicletas1.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\bin\Debug\net10.0\LocacaoBicicletas1.dll
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\bin\Debug\net10.0\LocacaoBicicletas1.pdb
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\LocacaoBicicletas1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\LocacaoBicicletas1.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\LocacaoBicicletas1.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\LocacaoBicicletas1.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\LocacaoBicicletas1.dll
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\refint\LocacaoBicicletas1.dll
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\LocacaoBicicletas1.pdb
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\LocacaoBicicletas1.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\LocacaoBicicleta\LocacaoBicicletas1\LocacaoBicicletas1\obj\Debug\net10.0\ref\LocacaoBicicletas1.dll

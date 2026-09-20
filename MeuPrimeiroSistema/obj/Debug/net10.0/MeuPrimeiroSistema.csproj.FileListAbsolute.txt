@@ -1,0 +1,14 @@
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\bin\Debug\net10.0\MeuPrimeiroSistema.exe
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\bin\Debug\net10.0\MeuPrimeiroSistema.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\bin\Debug\net10.0\MeuPrimeiroSistema.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\bin\Debug\net10.0\MeuPrimeiroSistema.dll
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\bin\Debug\net10.0\MeuPrimeiroSistema.pdb
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\MeuPrimeiroSistema.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\MeuPrimeiroSistema.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\MeuPrimeiroSistema.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\MeuPrimeiroSistema.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\MeuPrimeiroSistema.dll
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\refint\MeuPrimeiroSistema.dll
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\MeuPrimeiroSistema.pdb
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\MeuPrimeiroSistema.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\MeuPrimeiroSistema\obj\Debug\net10.0\ref\MeuPrimeiroSistema.dll
