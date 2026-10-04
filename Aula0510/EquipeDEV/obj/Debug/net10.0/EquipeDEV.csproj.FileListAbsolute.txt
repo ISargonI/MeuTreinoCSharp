@@ -1,0 +1,15 @@
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\bin\Debug\net10.0\EquipeDEV.exe
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\bin\Debug\net10.0\EquipeDEV.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\bin\Debug\net10.0\EquipeDEV.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\bin\Debug\net10.0\EquipeDEV.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\bin\Debug\net10.0\EquipeDEV.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.sourcelink.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\refint\EquipeDEV.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\EquipeDEV.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\EquipeDEV\obj\Debug\net10.0\ref\EquipeDEV.dll

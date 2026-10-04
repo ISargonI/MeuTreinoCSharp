@@ -1,0 +1,15 @@
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\bin\Debug\net10.0\SalaCinema.exe
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\bin\Debug\net10.0\SalaCinema.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\bin\Debug\net10.0\SalaCinema.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\bin\Debug\net10.0\SalaCinema.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\bin\Debug\net10.0\SalaCinema.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.sourcelink.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\refint\SalaCinema.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\SalaCinema.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\SalaCinema\obj\Debug\net10.0\ref\SalaCinema.dll

@@ -1,0 +1,15 @@
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\bin\Debug\net10.0\ContaUsuario.exe
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\bin\Debug\net10.0\ContaUsuario.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\bin\Debug\net10.0\ContaUsuario.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\bin\Debug\net10.0\ContaUsuario.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\bin\Debug\net10.0\ContaUsuario.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.sourcelink.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\refint\ContaUsuario.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ContaUsuario.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0510\ContaUsuario\obj\Debug\net10.0\ref\ContaUsuario.dll
