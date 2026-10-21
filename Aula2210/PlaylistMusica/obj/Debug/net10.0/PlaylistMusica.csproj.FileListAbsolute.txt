@@ -1,0 +1,15 @@
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\bin\Debug\net10.0\PlaylistMusica.exe
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\bin\Debug\net10.0\PlaylistMusica.deps.json
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\bin\Debug\net10.0\PlaylistMusica.runtimeconfig.json
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\bin\Debug\net10.0\PlaylistMusica.dll
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\bin\Debug\net10.0\PlaylistMusica.pdb
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.AssemblyInfoInputs.cache
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.AssemblyInfo.cs
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.sourcelink.json
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.dll
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\refint\PlaylistMusica.dll
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.pdb
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\PlaylistMusica.genruntimeconfig.cache
+C:\Users\Adriano\meutreinocsharp\aula2210\playlistmusica\obj\Debug\net10.0\ref\PlaylistMusica.dll
