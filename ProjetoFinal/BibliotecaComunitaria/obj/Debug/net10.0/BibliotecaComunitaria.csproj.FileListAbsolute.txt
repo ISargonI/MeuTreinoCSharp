@@ -1,0 +1,15 @@
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\bin\Debug\net10.0\BibliotecaComunitaria.exe
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\bin\Debug\net10.0\BibliotecaComunitaria.deps.json
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\bin\Debug\net10.0\BibliotecaComunitaria.runtimeconfig.json
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\bin\Debug\net10.0\BibliotecaComunitaria.dll
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\bin\Debug\net10.0\BibliotecaComunitaria.pdb
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.AssemblyInfoInputs.cache
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.AssemblyInfo.cs
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.sourcelink.json
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.dll
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\refint\BibliotecaComunitaria.dll
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.pdb
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\BibliotecaComunitaria.genruntimeconfig.cache
+C:\Users\Adriano\meutreinocsharp\projetofinal\bibliotecacomunitaria\obj\Debug\net10.0\ref\BibliotecaComunitaria.dll
