@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SistemaProdutosComerciais/1.0.0": {
+        "runtime": {
+          "SistemaProdutosComerciais.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SistemaProdutosComerciais/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

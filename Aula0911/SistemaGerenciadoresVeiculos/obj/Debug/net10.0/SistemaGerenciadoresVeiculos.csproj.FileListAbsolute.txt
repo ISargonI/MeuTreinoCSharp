@@ -1,0 +1,15 @@
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\bin\Debug\net10.0\SistemaGerenciadoresVeiculos.exe
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\bin\Debug\net10.0\SistemaGerenciadoresVeiculos.deps.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\bin\Debug\net10.0\SistemaGerenciadoresVeiculos.runtimeconfig.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\bin\Debug\net10.0\SistemaGerenciadoresVeiculos.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\bin\Debug\net10.0\SistemaGerenciadoresVeiculos.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.AssemblyInfoInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.AssemblyInfo.cs
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.csproj.CoreCompileInputs.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.sourcelink.json
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\refint\SistemaGerenciadoresVeiculos.dll
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.pdb
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\SistemaGerenciadoresVeiculos.genruntimeconfig.cache
+C:\Users\Adriano\MeuTreinoCSharp\Aula0911\SistemaGerenciadoresVeiculos\obj\Debug\net10.0\ref\SistemaGerenciadoresVeiculos.dll
