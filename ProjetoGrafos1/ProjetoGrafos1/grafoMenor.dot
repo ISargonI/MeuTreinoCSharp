@@ -1,0 +1,26 @@
+graph RedeSocial {
+    layout=neato;
+    overlap=false;
+    node [shape=circle, style=filled, fontname="Arial"];
+
+    "A" [fillcolor="#AED6F1"];
+    "B" [fillcolor="#AED6F1"];
+    "C" [fillcolor="#AED6F1", color="red", penwidth=2.5];
+    "D" [fillcolor="#AED6F1", color="red", penwidth=2.5];
+    "E" [fillcolor="#A9DFBF", color="red", penwidth=2.5];
+    "F" [fillcolor="#F9E79F", color="red", penwidth=2.5];
+    "G" [fillcolor="#F9E79F"];
+    "H" [fillcolor="#F9E79F", color="red", penwidth=2.5];
+    "I" [fillcolor="#F9E79F"];
+
+    "A" -- "B";
+    "A" -- "C";
+    "B" -- "C";
+    "C" -- "D" [color="red", style="dashed", penwidth=2.0];
+    "D" -- "E" [color="red", style="dashed", penwidth=2.0];
+    "E" -- "F" [color="red", style="dashed", penwidth=2.0];
+    "F" -- "G";
+    "F" -- "H";
+    "G" -- "H";
+    "H" -- "I" [color="red", style="dashed", penwidth=2.0];
+}

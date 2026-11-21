@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1795177421 source:c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"grafo.h"
+	"conectividade.h"
+	"comunidades.h"
+	"simulacao.h"
+	"relatorio.h"
+
+1795176106 source:c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\grafo.c
+	"grafo.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1795176031 c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\grafo.h
+	<stdbool.h>
+
+1795176445 source:c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\conectividade.c
+	"conectividade.h"
+	<stdio.h>
+	<stdlib.h>
+
+1795176392 c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\conectividade.h
+	"grafo.h"
+	<stdbool.h>
+
+1795176654 source:c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\comunidades.c
+	"comunidades.h"
+	"conectividade.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1795176613 c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\comunidades.h
+	"grafo.h"
+
+1795176986 source:c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\simulacao.c
+	"simulacao.h"
+	"conectividade.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1795176951 c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\simulacao.h
+	"grafo.h"
+
+1795177377 source:c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\relatorio.c
+	"relatorio.h"
+	<stdio.h>
+	<stdlib.h>
+
+1795177332 c:\users\adriano\meutreinocsharp\projetografos1\projetografos1\relatorio.h
+	"grafo.h"
+	"conectividade.h"
+	"comunidades.h"
+

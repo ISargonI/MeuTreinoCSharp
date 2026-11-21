@@ -1,0 +1,39 @@
+============================================================
+   RELATORIO TECNICO - ANALISE DE REDES SOCIAIS EM GRAFOS   
+============================================================
+
+1. METRICAS GERAIS (RF02)
+   - Vertices ativos : 9
+   - Arestas ativas  : 10
+   - Grau medio      : 2.2222
+   - Densidade       : 0.277778
+
+2. CONECTIVIDADE E COMPONENTES CONEXAS (RF03 / RF04)
+   - Grafo conexo?        : SIM
+   - Total de componentes : 1
+   - Maior componente     : 9 vertices
+
+3. PONTOS CRITICOS E BICONECTIVIDADE (RF05 / RF06 / RF07)
+   - Vertices de articulacao : 5
+       * Usuario C (grau 3)
+       * Usuario D (grau 2)
+       * Usuario E (grau 2)
+       * Usuario F (grau 3)
+       * Usuario H (grau 3)
+
+   - Pontes (conexoes criticas): 4
+       * (H -- I)
+       * (E -- F)
+       * (D -- E)
+       * (C -- D)
+
+   - Componentes biconexas : 6
+
+4. DETECCAO DE COMUNIDADES - GIRVAN-NEWMAN (RF08)
+   - Comunidades detectadas : 3
+   - Arestas removidas      : 2
+   - Modularidade (Q)       : 0.3850
+       * Comunidade 1: 4 vertices
+       * Comunidade 2: 1 vertices
+       * Comunidade 3: 4 vertices
+
