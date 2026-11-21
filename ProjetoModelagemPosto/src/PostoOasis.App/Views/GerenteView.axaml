@@ -1,0 +1,512 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PostoOasis.App.ViewModels"
+             xmlns:m="using:PostoOasis.Core.Models"
+             x:Class="PostoOasis.App.Views.GerenteView"
+             x:DataType="vm:MainWindowViewModel"
+             Background="{DynamicResource AppBackground}">
+
+    <ScrollViewer Padding="20">
+        <StackPanel Spacing="16">
+            
+            <!-- Cabeçalho Gerencial -->
+            <Grid ColumnDefinitions="*, Auto">
+                <StackPanel Grid.Column="0" Spacing="4">
+                    <TextBlock Text="Painel de Controle da Gerência &amp; Auditoria" Classes="headerTitle"/>
+                    <TextBlock Text="Reajuste fácil de preços (RNF10), auditoria analítica com drill-down, CRUD de produtos e homologação." Classes="subTitle"/>
+                </StackPanel>
+                
+                <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+                    <Border Classes="badge"><TextBlock Text="RNF10: Reajuste Fácil de Preços"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RF11: CRUD Produtos"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RN19: Homologação Perdas"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RN16: Fechamento c/ Gerente"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RF20: Relatórios Gerenciais"/></Border>
+                </WrapPanel>
+            </Grid>
+
+            <!-- Feedback da Gerência -->
+            <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppAccent}" BorderThickness="1" CornerRadius="6" Padding="12,8"
+                    IsVisible="{Binding MensagemGerente, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                <Grid ColumnDefinitions="Auto, *">
+                    <TextBlock Grid.Column="0" Text="👔 " FontSize="14"/>
+                    <TextBlock Grid.Column="1" Text="{Binding MensagemGerente}" Foreground="{DynamicResource AppAccent}" FontSize="11" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <!-- NOVO: ALERTA DE ESTOQUE BAIXO DE COMBUSTÍVEL NOS TANQUES [RN12 / RN13] (PEDIDO DO USUÁRIO) -->
+            <Border Classes="card" BorderBrush="#EF4444" BorderThickness="1.5"
+                    IsVisible="{Binding HasTanquesEmAlerta}">
+                <StackPanel Spacing="8">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="🚨" FontSize="18" VerticalAlignment="Center"/>
+                            <StackPanel>
+                                <TextBlock Text="ALERTA GERENCIAL DE ESTOQUE DE COMBUSTÍVEL NOS TANQUES [RN12 / RN13]" FontWeight="Bold" FontSize="12" Foreground="#EF4444"/>
+                                <TextBlock Text="Tanques atingiram limite de reposição (≤ 15%) ou bloqueio crítico de segurança (≤ 4%). Acione a Petrobras [RN15]:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Grid.Column="1" Classes="badge"><TextBlock Text="RN13: Alerta 15% / RN12: Corte 4%"/></Border>
+                    </Grid>
+
+                    <ItemsControl ItemsSource="{Binding TanquesAlertaCombustivel}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="m:Combustivel">
+                                <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="10,6" Margin="0,2">
+                                    <Grid ColumnDefinitions="140, 160, *, Auto">
+                                        <TextBlock Grid.Column="0" Text="{Binding Nome, StringFormat='Tanque de {0}'}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding NivelAtualLitros, StringFormat='Nível: {0:F0} Litros'}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center"/>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding PercentualNivel, StringFormat='Capacidade: {0:F1}%'}" FontWeight="Bold" Foreground="#EF4444" FontSize="11"/>
+                                            <TextBlock Text="[CORTE CRÍTICO &lt; 4% - BOMBAS BLOQUEADAS RN12]" FontWeight="Bold" Foreground="#EF4444" FontSize="10" IsVisible="{Binding EstaNivelCriticoBloqueio}"/>
+                                            <TextBlock Text="[ALERTA REPOSIÇÃO &lt;= 15% RN13]" FontWeight="Bold" Foreground="#F59E0B" FontSize="10" IsVisible="{Binding PrecisaAlertaCompra}"/>
+                                        </StackPanel>
+                                        <Border Grid.Column="3" Background="{DynamicResource AppBadgeBg}" BorderBrush="{DynamicResource AppBadgeBorder}" BorderThickness="1" CornerRadius="4" Padding="6,2">
+                                            <TextBlock Text="Fornecimento: Petrobras S.A. [RN15]" FontSize="9" Foreground="{DynamicResource AppAccent}"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Filtro de Período do Relatório Gerencial (RF20: Diário, Semanal ou Mensal) -->
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                    <TextBlock Text="Filtrar Indicadores por Período [RF20]:" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" VerticalAlignment="Center"/>
+                    <Border Classes="badge"><TextBlock Text="{Binding FiltroPeriodoRelatorioGerente, StringFormat='Período: {0}'}"/></Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                    <Button Content="📅 Diário" Command="{Binding AlterarFiltroPeriodoGerenteCommand}" CommandParameter="Diário"
+                            FontSize="10" Padding="8,3" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" CornerRadius="4"/>
+                    <Button Content="📅 Semanal" Command="{Binding AlterarFiltroPeriodoGerenteCommand}" CommandParameter="Semanal"
+                            FontSize="10" Padding="8,3" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" CornerRadius="4"/>
+                    <Button Content="📅 Mensal" Command="{Binding AlterarFiltroPeriodoGerenteCommand}" CommandParameter="Mensal"
+                            FontSize="10" Padding="8,3" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White" CornerRadius="4"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Resumo Executivo / Relatório Gerencial com Cards Clicáveis (RF20 - Pedido do Usuário) -->
+            <Grid ColumnDefinitions="*, *, *, *">
+                
+                <!-- Card 1: Faturamento Pista (Clicável para Ver Detalhes) -->
+                <Button Grid.Column="0" Command="{Binding AbrirDetalhesFaturamentoPistaCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        Background="{DynamicResource AppCardBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,0,6,0">
+                    <StackPanel Spacing="4">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Grid.Column="0" Text="FATURAMENTO PISTA" FontSize="10" Foreground="{DynamicResource AppTextMuted}" FontWeight="Bold"/>
+                            <TextBlock Grid.Column="1" Text="🔍 Ver Detalhes" FontSize="9" Foreground="{DynamicResource AppBtnPrimaryBg}"/>
+                        </Grid>
+                        <TextBlock Text="{Binding RelatorioFaturamentoComb, StringFormat='R$ {0:F2}'}" FontSize="18" FontWeight="Black" Foreground="{DynamicResource AppAccent}"/>
+                        <TextBlock Text="Clique para ver frentistas e vendas ➔" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Card 2: Faturamento Loja (Clicável para Ver Detalhes) -->
+                <Button Grid.Column="1" Command="{Binding AbrirDetalhesFaturamentoLojaCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        Background="{DynamicResource AppCardBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="3,0,3,0">
+                    <StackPanel Spacing="4">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Grid.Column="0" Text="FATURAMENTO LOJA" FontSize="10" Foreground="{DynamicResource AppTextMuted}" FontWeight="Bold"/>
+                            <TextBlock Grid.Column="1" Text="🔍 Ver Detalhes" FontSize="9" Foreground="{DynamicResource AppBtnPrimaryBg}"/>
+                        </Grid>
+                        <TextBlock Text="{Binding RelatorioFaturamentoConv, StringFormat='R$ {0:F2}'}" FontSize="18" FontWeight="Black" Foreground="{DynamicResource AppAccent}"/>
+                        <TextBlock Text="Clique para ver caixas e itens ➔" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Card 3: Dívidas Ativas (Clicável para Ver Detalhes) -->
+                <Button Grid.Column="2" Command="{Binding AbrirDetalhesDividasCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        Background="{DynamicResource AppCardBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="3,0,3,0">
+                    <StackPanel Spacing="4">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Grid.Column="0" Text="DÍVIDAS ATIVAS (CALOTES)" FontSize="10" Foreground="{DynamicResource AppTextMuted}" FontWeight="Bold"/>
+                            <TextBlock Grid.Column="1" Text="🔍 Ver Devedores" FontSize="9" Foreground="{DynamicResource AppBtnDangerBg}"/>
+                        </Grid>
+                        <TextBlock Text="{Binding RelatorioTotalDividas, StringFormat='R$ {0:F2}'}" FontSize="18" FontWeight="Black" Foreground="{DynamicResource AppBtnDangerBg}"/>
+                        <TextBlock Text="Clique para ver quem deve ➔" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Card 4: Estoque Baixo (Clicável para Ver Detalhes) -->
+                <Button Grid.Column="3" Command="{Binding AbrirDetalhesEstoqueBaixoCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        Background="{DynamicResource AppCardBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="6,0,0,0">
+                    <StackPanel Spacing="4">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Grid.Column="0" Text="ALERTAS DE ESTOQUE" FontSize="10" Foreground="{DynamicResource AppTextMuted}" FontWeight="Bold"/>
+                            <TextBlock Grid.Column="1" Text="🔍 Ver Alertas" FontSize="9" Foreground="{DynamicResource AppBtnDangerBg}"/>
+                        </Grid>
+                        <TextBlock Text="{Binding RelatorioTotalAlertasEstoqueTexto}" FontSize="15" FontWeight="Black" Foreground="{DynamicResource AppBtnDangerBg}"/>
+                        <TextBlock Text="Tanques (RN13) e Loja (RN14) ➔" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+
+            <!-- ============================================================= -->
+            <!-- PAINEL DE AUDITORIA DETALHADA COM DRILL-DOWN (PEDIDO DO USUÁRIO) -->
+            <!-- ============================================================= -->
+            <Border Classes="card" BorderBrush="{DynamicResource AppAccent}" BorderThickness="1.5" IsVisible="{Binding IsDetalheFaturamentoAberto}">
+                <StackPanel Spacing="10">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <StackPanel Grid.Column="0" Spacing="2">
+                            <TextBlock Text="{Binding TituloDetalheFaturamento}" FontWeight="Bold" FontSize="13" Foreground="{DynamicResource AppAccent}"/>
+                            <TextBlock Text="Auditoria analítica de registros: datas, horários, funcionários responsáveis, clientes e valores." FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                        </StackPanel>
+                        <Button Grid.Column="1" Content="✕ Fechar Detalhes" Command="{Binding FecharDetalhesFaturamentoCommand}"
+                                Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="10" Padding="8,4"/>
+                    </Grid>
+
+                    <!-- Detalhes de Vendas da Pista (Identificação Clara do Frentista e Caixa) -->
+                    <StackPanel Spacing="4" IsVisible="{Binding IsDetalhePista}">
+                        <Border Background="{DynamicResource AppCardBorder}" CornerRadius="4" Padding="8,4" Margin="0,0,0,2">
+                            <Grid ColumnDefinitions="45, 105, 140, 140, 150, *, 85, 75">
+                                <TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="1" Text="DATA/HORA" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="2" Text="FRENTISTA (PISTA)" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppAccent}"/>
+                                <TextBlock Grid.Column="3" Text="OPERADOR (CAIXA)" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppAccent}"/>
+                                <TextBlock Grid.Column="4" Text="CLIENTE" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="5" Text="COMBUSTÍVEL &amp; LITROS" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="6" Text="VALOR (R$)" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="7" Text="PAGTO" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                            </Grid>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding VendasPistaDetalhe}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="m:Venda">
+                                    <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="4" Padding="8,5" Margin="0,2">
+                                        <Grid ColumnDefinitions="45, 105, 140, 140, 150, *, 85, 75">
+                                            <TextBlock Grid.Column="0" Text="{Binding IdVenda, StringFormat='#{0}'}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding DataHora, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding NomeFrentista}" Foreground="{DynamicResource AppAccent}" FontWeight="Bold" FontSize="10" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding NomeOperadorCaixa}" Foreground="{DynamicResource AppTextPrimary}" FontSize="10" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="4" Text="{Binding NomeCliente}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Grid.Column="5" Text="{Binding DescricaoCombustivel}" Foreground="{DynamicResource AppTextPrimary}" FontSize="10" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="6" Text="{Binding ValorTotal, StringFormat='R$ {0:F2}'}" FontWeight="Bold" Foreground="{DynamicResource AppAccent}" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="7" Text="{Binding FormaPagamentoTexto}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- Detalhes de Vendas da Loja (Identificação Clara do Caixa e Itens) -->
+                    <StackPanel Spacing="4" IsVisible="{Binding IsDetalheLoja}">
+                        <Border Background="{DynamicResource AppCardBorder}" CornerRadius="4" Padding="8,4" Margin="0,0,0,2">
+                            <Grid ColumnDefinitions="45, 105, 150, 160, *, 85, 75">
+                                <TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="1" Text="DATA/HORA" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="2" Text="OPERADOR (CAIXA)" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppAccent}"/>
+                                <TextBlock Grid.Column="3" Text="CLIENTE" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="4" Text="ITENS DA CONVENIÊNCIA" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="5" Text="VALOR (R$)" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                                <TextBlock Grid.Column="6" Text="PAGTO" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+                            </Grid>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding VendasLojaDetalhe}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="m:Venda">
+                                    <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="4" Padding="8,5" Margin="0,2">
+                                        <Grid ColumnDefinitions="45, 105, 150, 160, *, 85, 75">
+                                            <TextBlock Grid.Column="0" Text="{Binding IdVenda, StringFormat='#{0}'}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding DataHora, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding NomeOperadorCaixa}" Foreground="{DynamicResource AppAccent}" FontWeight="Bold" FontSize="10" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding NomeCliente}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Grid.Column="4" Text="{Binding DescricaoItensLoja}" Foreground="{DynamicResource AppTextPrimary}" FontSize="10" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                            <TextBlock Grid.Column="5" Text="{Binding ValorTotal, StringFormat='R$ {0:F2}'}" FontWeight="Bold" Foreground="{DynamicResource AppAccent}" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="6" Text="{Binding FormaPagamentoTexto}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- Detalhes de Clientes Devedores -->
+                    <StackPanel Spacing="4" IsVisible="{Binding IsDetalheDividas}">
+                        <ItemsControl ItemsSource="{Binding DevedoresDetalhe}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="m:Cliente">
+                                    <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="4" Padding="8,5" Margin="0,2">
+                                        <Grid ColumnDefinitions="*, 140, 120, 120">
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="{Binding Nome}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11"/>
+                                                <TextBlock Text="{Binding CpfCnpj, StringFormat='Doc: {0}'}" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="1" Text="{Binding Telefone, StringFormat='Tel: {0}'}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding DividaPendente, StringFormat='Débito: R$ {0:F2}'}" FontWeight="Bold" Foreground="{DynamicResource AppBtnDangerBg}" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding DataVencimentoDivida, StringFormat='Venc: {0:dd/MM/yyyy}'}" Foreground="{DynamicResource AppTextMuted}" FontSize="10" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- Detalhes de Estoque Crítico (Tanques de Combustível RN12/13 + Itens da Loja RN14) -->
+                    <StackPanel Spacing="6" IsVisible="{Binding IsDetalheEstoqueBaixo}">
+                        
+                        <!-- 1. Tanques em Alerta -->
+                        <TextBlock Text="1. Tanques de Combustível com Nível Crítico ou Abaixo de 15% [RN12 / RN13]:" FontWeight="Bold" FontSize="11" Foreground="#EF4444"/>
+                        <ItemsControl ItemsSource="{Binding TanquesAlertaCombustivel}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="m:Combustivel">
+                                    <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="4" Padding="8,5" Margin="0,2">
+                                        <Grid ColumnDefinitions="140, 160, *, Auto">
+                                            <TextBlock Grid.Column="0" Text="{Binding Nome, StringFormat='Tanque de {0}'}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding NivelAtualLitros, StringFormat='Nível: {0:F0} L'}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding PercentualNivel, StringFormat='Capacidade: {0:F1}% (Alerta de Reposição)'}" FontWeight="Bold" Foreground="#EF4444" FontSize="11"/>
+                                            <Border Grid.Column="3" Background="{DynamicResource AppBadgeBg}" BorderBrush="{DynamicResource AppBadgeBorder}" BorderThickness="1" CornerRadius="4" Padding="6,2">
+                                                <TextBlock Text="Fornecedor: Petrobras [RN15]" FontSize="9" Foreground="{DynamicResource AppAccent}"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- 2. Produtos da Conveniência com Estoque Baixo -->
+                        <TextBlock Text="2. Itens da Loja de Conveniência Abaixo do Estoque Mínimo [RN14]:" FontWeight="Bold" FontSize="11" Foreground="{DynamicResource AppTextPrimary}" Margin="0,4,0,0"/>
+                        <ItemsControl ItemsSource="{Binding ProdutosEstoqueBaixoDetalhe}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="m:Produto">
+                                    <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="4" Padding="8,5" Margin="0,2">
+                                        <Grid ColumnDefinitions="*, 120, 100, 100">
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="{Binding Nome}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11"/>
+                                                <TextBlock Text="{Binding Categoria}" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="1" Text="{Binding Preco, StringFormat='R$ {0:F2}'}" Foreground="{DynamicResource AppAccent}" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding QuantidadeEstoque, StringFormat='Estoque: {0}'}" FontWeight="Bold" Foreground="{DynamicResource AppBtnDangerBg}" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding EstoqueMinimo, StringFormat='Mínimo: {0}'}" Foreground="{DynamicResource AppTextSecondary}" FontSize="10" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ============================================================= -->
+            <!-- 1. CRUD DE PREÇOS DE COMBUSTÍVEL - RNF10 ATUALIZAÇÃO FÁCIL    -->
+            <!-- ============================================================= -->
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Reajuste Rápido de Preços de Combustíveis [RNF10]" FontWeight="Bold" FontSize="13" Foreground="{DynamicResource AppTextPrimary}"/>
+                            <TextBlock Text="Reajuste do preço por litro pelo gerente, refletindo em tempo real nas 6 bombas da pista:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                        </StackPanel>
+                        <Border Classes="badge"><TextBlock Text="RNF10: Manutenibilidade"/></Border>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, *, *">
+                        
+                        <!-- Gasolina -->
+                        <Border Grid.Column="0" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,0,6,0">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="GASOLINA COMUM" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <TextBox Watermark="Novo Preço (R$)" Text="{Binding NovoPrecoGasolina}" FontSize="11"/>
+                                <Button Content="Atualizar Preço" 
+                                        Command="{Binding ReajustarPrecoGasolinaGerenteCommand}"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White" FontSize="10" Padding="0,5"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Etanol -->
+                        <Border Grid.Column="1" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="10" Margin="3,0,3,0">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="ETANOL HIDRATADO" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <TextBox Watermark="Novo Preço (R$)" Text="{Binding NovoPrecoEtanol}" FontSize="11"/>
+                                <Button Content="Atualizar Preço" 
+                                        Command="{Binding ReajustarPrecoEtanolGerenteCommand}"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White" FontSize="10" Padding="0,5"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Diesel -->
+                        <Border Grid.Column="2" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="10" Margin="6,0,0,0">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="DIESEL S-10" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <TextBox Watermark="Novo Preço (R$)" Text="{Binding NovoPrecoDiesel}" FontSize="11"/>
+                                <Button Content="Atualizar Preço" 
+                                        Command="{Binding ReajustarPrecoDieselGerenteCommand}"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White" FontSize="10" Padding="0,5"/>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ============================================================= -->
+            <!-- 2. CRUD DE PRODUTOS DA CONVENIÊNCIA - RNF10 / RF11            -->
+            <!-- ============================================================= -->
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="CRUD Completo de Produtos da Loja de Conveniência [RF11 / RNF10]" FontWeight="Bold" FontSize="13" Foreground="{DynamicResource AppTextPrimary}"/>
+                            <TextBlock Text="Cadastrar novos itens, atualizar preços, estoques e limites mínimos de reposição:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                        </StackPanel>
+                        <Border Classes="badge"><TextBlock Text="RF11: Gerenciar Itens"/></Border>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, 340">
+                        
+                        <!-- Tabela de Produtos -->
+                        <StackPanel Grid.Column="0" Spacing="4">
+                            <TextBlock Text="Produtos Cadastrados:" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}"/>
+                            <ItemsControl ItemsSource="{Binding ProdutosGerente}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="m:Produto">
+                                        <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="8,6" Margin="0,2">
+                                            <Grid ColumnDefinitions="*, 70, 70, 70, Auto">
+                                                <StackPanel Grid.Column="0">
+                                                    <TextBlock Text="{Binding Nome}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11"/>
+                                                    <TextBlock Text="{Binding Categoria}" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding Preco, StringFormat='R$ {0:F2}'}" FontWeight="Bold" Foreground="{DynamicResource AppAccent}" VerticalAlignment="Center" FontSize="11"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding QuantidadeEstoque, StringFormat='Qtd: {0}'}" Foreground="{DynamicResource AppTextPrimary}" VerticalAlignment="Center" FontSize="10"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding EstoqueMinimo, StringFormat='Mín: {0}'}" Foreground="{DynamicResource AppTextSecondary}" VerticalAlignment="Center" FontSize="10"/>
+                                                <Button Grid.Column="4" Content="Editar no CRUD" 
+                                                        Command="{Binding $parent[UserControl].DataContext.EditarProdutoCrudGerenteCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="9" Padding="6,3"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <!-- Formulário do CRUD de Produto -->
+                        <Border Grid.Column="1" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="12" Margin="12,0,0,0">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Formulário de Produto (Novo / Editar)" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <TextBlock Text="{Binding CrudProdutoId, StringFormat='ID em Edição: #{0} (0 = Novo)'}" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                                
+                                <TextBox Watermark="Nome do Produto" Text="{Binding CrudProdutoNome}" FontSize="11"/>
+                                <TextBox Watermark="Preço de Venda (R$)" Text="{Binding CrudProdutoPreco}" FontSize="11"/>
+                                <TextBox Watermark="Categoria" Text="{Binding CrudProdutoCategoria}" FontSize="11"/>
+                                <TextBox Watermark="Quantidade em Estoque" Text="{Binding CrudProdutoEstoque}" FontSize="11"/>
+                                <TextBox Watermark="Estoque Mínimo de Alerta" Text="{Binding CrudProdutoEstoqueMin}" FontSize="11"/>
+
+                                <Grid ColumnDefinitions="*, *">
+                                    <Button Grid.Column="0" Content="Salvar Produto" 
+                                            Command="{Binding SalvarProdutoCrudGerenteCommand}"
+                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnSuccessBg}" Foreground="White" FontWeight="Bold" FontSize="11" Margin="0,0,3,0" Padding="0,5"/>
+                                    <Button Grid.Column="1" Content="Novo / Limpar" 
+                                            Command="{Binding LimparFormularioCrudGerenteCommand}"
+                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="11" Margin="3,0,0,0" Padding="0,5"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ============================================================= -->
+            <!-- 3. AJUSTE MANUAL DE ESTOQUE (RN19) & FECHAMENTO DE CAIXA (RN16) -->
+            <!-- ============================================================= -->
+            <Grid ColumnDefinitions="*, *">
+                
+                <!-- Ajuste Manual de Estoque (RN19) -->
+                <Border Grid.Column="0" Classes="card" Margin="0,0,8,0">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Ajuste Manual de Estoque (Homologação) [RN19]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                        <TextBlock Text="Ajustes manuais (vencidos, avariados ou furtados) exigem homologação do Gerente:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+
+                        <ComboBox ItemsSource="{Binding ProdutosGerente}" SelectedItem="{Binding ProdutoAjusteManual}"
+                                  HorizontalAlignment="Stretch" PlaceholderText="Selecione o produto avariado/vencido" FontSize="11">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="m:Produto">
+                                    <TextBlock Text="{Binding Nome}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBox Watermark="Nova Quantidade Real" Text="{Binding NovaQtdAjusteManual}" FontSize="11"/>
+                        <TextBox Watermark="Motivo do Ajuste" Text="{Binding MotivoAjusteManual}" FontSize="11"/>
+
+                        <Button Content="Homologar Ajuste Manual [RN19]" 
+                                Command="{Binding HomologarAjusteEstoqueGerenteCommand}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="11" Padding="0,5"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Homologação de Fechamento de Caixa (RN16 / RF19) -->
+                <Border Grid.Column="1" Classes="card" Margin="8,0,0,0">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Homologar Fechamento de Caixa [RN16 / RF19]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                        <TextBlock Text="Fechamento consolidado do turno só é validado por usuário com perfil de Gerente:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Grid.Column="0" Text="Total Apurado no Turno:" FontSize="11" Foreground="{DynamicResource AppTextSecondary}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SessaoCaixaGerente.SaldoTotal, StringFormat='R$ {0:F2}'}" FontWeight="Black" FontSize="16" Foreground="{DynamicResource AppAccent}"/>
+                        </Grid>
+
+                        <TextBlock Text="{Binding SessaoCaixaGerente.DataAbertura, StringFormat='Sessão aberta em: {0:dd/MM/yyyy HH:mm}'}" FontSize="10" Foreground="{DynamicResource AppTextMuted}"/>
+
+                        <Button Content="Homologar Fechamento do Caixa [RN16]" 
+                                Command="{Binding HomologarFechamentoCaixaGerenteCommand}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnSuccessBg}" Foreground="White" FontSize="11" Padding="0,5"/>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+            <!-- ============================================================= -->
+            <!-- 4. GESTÃO DE COBRANÇAS PARA EMPRESAS (RF05 / RN11 / RN20)     -->
+            <!-- ============================================================= -->
+            <Border Classes="card">
+                <StackPanel Spacing="8">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <TextBlock Grid.Column="0" Text="Cobrança Consolidada Mensal para Empresas [RF05 / RN11]" FontWeight="Bold" FontSize="13" Foreground="{DynamicResource AppTextPrimary}"/>
+                        <WrapPanel Grid.Column="1">
+                            <Border Classes="badge"><TextBlock Text="RN11: Boletos Empresas"/></Border>
+                            <Border Classes="badge"><TextBlock Text="RN20: Bloqueio Inadimplentes"/></Border>
+                        </WrapPanel>
+                    </Grid>
+
+                    <ItemsControl ItemsSource="{Binding ClientesGerente}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="m:Cliente">
+                                <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="10,6" Margin="0,3">
+                                    <Grid ColumnDefinitions="*, 130, 110, 110, Auto">
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="{Binding Nome}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11"/>
+                                            <TextBlock Text="{Binding CpfCnpj}" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="1" Text="{Binding Telefone}" Foreground="{DynamicResource AppTextSecondary}" VerticalAlignment="Center" FontSize="10"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding DividaPendente, StringFormat='Débito: R$ {0:F2}'}" FontWeight="Bold" Foreground="{DynamicResource AppBtnDangerBg}" VerticalAlignment="Center" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding DataVencimentoDivida, StringFormat='Vence: {0:dd/MM/yyyy}', FallbackValue='Sem débitos'}" Foreground="{DynamicResource AppTextSecondary}" VerticalAlignment="Center" FontSize="10"/>
+                                        
+                                        <Button Grid.Column="4" Content="Gerar Boleto Mensal [RN11]"
+                                                Command="{Binding $parent[UserControl].DataContext.GerarBoletoMensalGerenteCommand}"
+                                                CommandParameter="{Binding}"
+                                                IsVisible="{Binding IsEmpresa}"
+                                                Padding="8,3" FontSize="10" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

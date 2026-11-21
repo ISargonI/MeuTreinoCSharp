@@ -1,0 +1,258 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PostoOasis.App.ViewModels"
+             xmlns:m="using:PostoOasis.Core.Models"
+             x:Class="PostoOasis.App.Views.AuxiliarAdmView"
+             x:DataType="vm:MainWindowViewModel"
+             Background="{DynamicResource AppBackground}">
+
+    <ScrollViewer Padding="20">
+        <StackPanel Spacing="16">
+            
+            <!-- Cabeçalho -->
+            <Grid ColumnDefinitions="*, Auto">
+                <StackPanel Grid.Column="0" Spacing="4">
+                    <TextBlock Text="Módulo Administrativo, RH &amp; Suprimentos" Classes="headerTitle"/>
+                    <TextBlock Text="Gestão de colaboradores, registro de ponto, cadastro e auditoria de fornecedores e compras." Classes="subTitle"/>
+                </StackPanel>
+                
+                <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+                    <Border Classes="badge"><TextBlock Text="RF15: Dados Colaboradores"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RN04: Validação Matemática CPF"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RN05: Piso Salarial"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RF09 / RN15: Petrobras Distribuidora"/></Border>
+                </WrapPanel>
+            </Grid>
+
+            <!-- Feedback Operacional -->
+            <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppAccent}" BorderThickness="1" CornerRadius="6" Padding="12,8"
+                    IsVisible="{Binding MensagemAdm, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                <Grid ColumnDefinitions="Auto, *">
+                    <TextBlock Grid.Column="0" Text="📋 " FontSize="14"/>
+                    <TextBlock Grid.Column="1" Text="{Binding MensagemAdm}" Foreground="{DynamicResource AppAccent}" FontSize="11" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <!-- Ponto Eletrônico do Operador Administrativo -->
+            <Border Classes="card">
+                <Grid ColumnDefinitions="*, Auto">
+                    <StackPanel Grid.Column="0" Spacing="2" VerticalAlignment="Center">
+                        <TextBlock Text="Registro de Ponto Eletrônico Administrativo [RF17]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                        <TextBlock Text="Registre os horários de início e término de jornada para auditoria de RH:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                        <Button Content="Entrada" Command="{Binding BaterPontoAdmCommand}" CommandParameter="Entrada" Background="{DynamicResource AppBtnSuccessBg}" Foreground="White" FontSize="10" Padding="8,4"/>
+                        <Button Content="Almoço" Command="{Binding BaterPontoAdmCommand}" CommandParameter="SaidaIntervalo" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="10" Padding="8,4"/>
+                        <Button Content="Retorno" Command="{Binding BaterPontoAdmCommand}" CommandParameter="RetornoIntervalo" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="10" Padding="8,4"/>
+                        <Button Content="Saída" Command="{Binding BaterPontoAdmCommand}" CommandParameter="Saida" Background="{DynamicResource AppBtnDangerBg}" Foreground="White" FontSize="10" Padding="8,4"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- LAYOUT EM 2 COLUNAS: ESQUERDA = RH & COLABORADORES | DIREITA = SUPRIMENTOS & FORNECEDORES -->
+            <Grid ColumnDefinitions="*, *">
+                
+                <!-- COLUNA ESQUERDA: GESTÃO DE PESSOAL & COLABORADORES (RF15 / RN04 / RN05 / RF18) -->
+                <StackPanel Grid.Column="0" Spacing="14" Margin="0,0,8,0">
+                    
+                    <!-- 1. Formulário de Admissão -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Admitir Novo Colaborador [RF15 / RN04 / RN05]" FontWeight="Bold" FontSize="13" Foreground="{DynamicResource AppTextPrimary}"/>
+                            <TextBlock Text="Aceita qualquer sequência de 11 dígitos para testes (sem repetição no posto) e valida o piso salarial [RN05]:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+
+                            <TextBox Watermark="Nome Completo" Text="{Binding NovoFuncNome}" FontSize="11"/>
+                            <TextBox Watermark="CPF (11 dígitos, ex: 11122233344)" Text="{Binding NovoFuncCpf}" FontSize="11"/>
+                            <TextBox Watermark="Cargo (Gerente, Frentista, Caixa, Auxiliar)" Text="{Binding NovoFuncCargo}" FontSize="11"/>
+                            <TextBox Watermark="Salário Proposto (R$)" Text="{Binding NovoFuncSalario}" FontSize="11"/>
+                            <TextBox Watermark="Carteira de Trabalho (CTPS)" Text="{Binding NovoFuncCarteira}" FontSize="11"/>
+                            <TextBox Watermark="Telefone de Contato" Text="{Binding NovoFuncTelefone}" FontSize="11"/>
+                            <TextBox Watermark="Endereço Residencial" Text="{Binding NovoFuncEndereco}" FontSize="11"/>
+
+                            <Button Content="Admitir Colaborador" 
+                                    Command="{Binding CadastrarFuncionarioAdmCommand}"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                    Height="34" FontWeight="Bold" Background="{DynamicResource AppBtnSuccessBg}" Foreground="White" CornerRadius="6" FontSize="11"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 2. Relação de Colaboradores Cadastrados (IMEDIATAMENTE ABAIXO DO CADASTRO) -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="8">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <TextBlock Grid.Column="0" Text="Relação de Colaboradores Cadastrados [RF15 / RF18]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <Border Grid.Column="1" Classes="badge"><TextBlock Text="RF18: Desativação"/></Border>
+                            </Grid>
+
+                            <ItemsControl ItemsSource="{Binding FuncionariosAdm}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="m:Funcionario">
+                                        <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="8,5" Margin="0,2">
+                                            <Grid ColumnDefinitions="*, 85, 80, Auto">
+                                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Nome}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11"/>
+                                                    <TextBlock Text="{Binding Cpf, StringFormat='CPF: {0}'}" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding Cargo}" Foreground="{DynamicResource AppAccent}" FontWeight="SemiBold" VerticalAlignment="Center" FontSize="10"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding Salario, StringFormat='R$ {0:F0}'}" Foreground="{DynamicResource AppTextPrimary}" VerticalAlignment="Center" FontSize="10"/>
+                                                <Button Grid.Column="3" Content="Desativar"
+                                                        Command="{Binding $parent[UserControl].DataContext.DesativarFuncionarioAdmCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Padding="6,2" FontSize="9" Background="{DynamicResource AppBtnDangerBg}" Foreground="White" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+
+                <!-- COLUNA DIREITA: SUPRIMENTOS, FORNECEDORES & COMBUSTÍVEIS (RF09 / RF13 / RN08 / RN15) -->
+                <StackPanel Grid.Column="1" Spacing="14" Margin="8,0,0,0">
+                    
+                    <!-- Novo Fornecedor da Conveniência com CNPJ (RF13 / RN08) -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Cadastrar Fornecedor da Conveniência [RF13 / RN08]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                            <TextBlock Text="Validação de 14 dígitos de CNPJ para fornecedores da loja de conveniência:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                            <TextBox Watermark="Razão Social da Distribuidora" Text="{Binding NovoFornRazao}" FontSize="11"/>
+                            <TextBox Watermark="CNPJ (14 dígitos válidos)" Text="{Binding NovoFornCnpj}" FontSize="11"/>
+                            <TextBox Watermark="Telefone Comercial" Text="{Binding NovoFornTelefone}" FontSize="11"/>
+                            <Button Content="Validar e Cadastrar Fornecedor" 
+                                    Command="{Binding CadastrarFornecedorAdmCommand}"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White" CornerRadius="5" FontSize="11" Padding="0,5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Recebimento de Combustível (RF09 / RN15) -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Receber Caminhão-Tanque Petrobras [RF09 / RN15]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                            <TextBlock Text="Posto bandeirado: fornecimento exclusivo Petrobras Distribuidora [RN15]:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                            
+                            <ComboBox ItemsSource="{Binding TanquesAdm}" SelectedItem="{Binding TanqueCompraSelecionado}"
+                                      HorizontalAlignment="Stretch" PlaceholderText="Selecione o Tanque a Abastecer" FontSize="11">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="m:Combustivel">
+                                        <TextBlock Text="{Binding Nome, StringFormat='Tanque de {0}'}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <TextBox Watermark="Litros a Descarregar (ex: 5000)" Text="{Binding LitrosCompraCombustivel}" FontSize="11"/>
+
+                            <Button Content="Registrar Descarga de Combustível [RF09]" 
+                                    Command="{Binding ReceberCaminhaoCombustivelAdmCommand}"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" CornerRadius="5" FontSize="11" Padding="0,5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Compras de Mercadorias para a Conveniência (RF14) -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="8">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <TextBlock Grid.Column="0" Text="Aquisição de Produtos para Conveniência [RF14]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <Border Grid.Column="1" Classes="badge"><TextBlock Text="RF14: Compras Loja"/></Border>
+                            </Grid>
+                            <TextBlock Text="Entrada de notas fiscais de mercadorias com fornecedor e quantidade:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                            
+                            <Grid ColumnDefinitions="*, *">
+                                <ComboBox Grid.Column="0" ItemsSource="{Binding ProdutosAdm}" SelectedItem="{Binding CompraLojaProdutoSelecionado}"
+                                          HorizontalAlignment="Stretch" Margin="0,0,2,0" PlaceholderText="Selecione o Produto" FontSize="11">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate x:DataType="m:Produto">
+                                            <TextBlock Text="{Binding Nome}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <ComboBox Grid.Column="1" ItemsSource="{Binding FornecedoresAdm}" SelectedItem="{Binding CompraLojaFornecedorSelecionado}"
+                                          HorizontalAlignment="Stretch" Margin="2,0,0,0" PlaceholderText="Fornecedor Homologado" FontSize="11">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate x:DataType="m:Fornecedor">
+                                            <TextBlock Text="{Binding RazaoSocial}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="*, *">
+                                <TextBox Grid.Column="0" Watermark="Quantidade Comprada (un)" Text="{Binding CompraLojaQuantidade}" Margin="0,0,2,0" FontSize="11"/>
+                                <TextBox Grid.Column="1" Watermark="Preço Unitário (R$)" Text="{Binding CompraLojaPrecoUnitario}" Margin="2,0,0,0" FontSize="11"/>
+                            </Grid>
+
+                            <Button Content="Registrar Aquisição de Mercadorias [RF14]" 
+                                    Command="{Binding RegistrarCompraLojaAdmCommand}"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnSuccessBg}" Foreground="White" CornerRadius="5" FontSize="11" Padding="0,5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Relatório de Horas Trabalhadas por Funcionário (RF17) -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="8">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <TextBlock Grid.Column="0" Text="Relatório de Horas Trabalhadas [RF17]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <Button Grid.Column="1" Content="📄 Extrair Relatório [RF17]" 
+                                        Command="{Binding EmitirRelatorioHorasRHCommand}"
+                                        FontSize="9" Padding="6,2" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White" CornerRadius="4"/>
+                            </Grid>
+                            <TextBlock Text="Acompanhamento individual da jornada de trabalho pelo departamento de RH:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+
+                            <ItemsControl ItemsSource="{Binding RelatorioHorasRH}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="m:RelatorioHorasFuncionario">
+                                        <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="6,4" Margin="0,2">
+                                            <Grid ColumnDefinitions="*, 80, 80, Auto">
+                                                <StackPanel Grid.Column="0">
+                                                    <TextBlock Text="{Binding NomeFuncionario}" FontWeight="Bold" FontSize="10" Foreground="{DynamicResource AppTextPrimary}"/>
+                                                    <TextBlock Text="{Binding Cargo, StringFormat='Cargo: {0}'}" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding HorasTrabalhadasMes, StringFormat='{}{0:F1}h normais'}" FontSize="9" Foreground="{DynamicResource AppTextPrimary}" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding HorasExtras, StringFormat='{}{0:F1}h extras'}" FontSize="9" Foreground="{DynamicResource AppAccent}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding StatusJornada}" FontSize="9" Foreground="{DynamicResource AppTextSecondary}" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Relação de Fornecedores Cadastrados -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="8">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <TextBlock Grid.Column="0" Text="Fornecedores Homologados [RN15 / RN08]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <Border Grid.Column="1" Classes="badge"><TextBlock Text="RN15: Petrobras"/></Border>
+                            </Grid>
+
+                            <ItemsControl ItemsSource="{Binding FornecedoresAdm}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="m:Fornecedor">
+                                        <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="8,5" Margin="0,2">
+                                            <Grid ColumnDefinitions="*, 130, Auto">
+                                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding RazaoSocial}" FontWeight="Bold" Foreground="{DynamicResource AppTextPrimary}" FontSize="11"/>
+                                                    <TextBlock Text="{Binding Cnpj, StringFormat='CNPJ: {0}'}" FontSize="9" Foreground="{DynamicResource AppTextSecondary}"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding Telefone, StringFormat='Tel: {0}'}" FontSize="10" Foreground="{DynamicResource AppTextSecondary}" VerticalAlignment="Center"/>
+                                                <Border Grid.Column="2" Background="{DynamicResource AppBadgeBg}" BorderBrush="{DynamicResource AppBadgeBorder}" BorderThickness="1" CornerRadius="4" Padding="6,2" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding TipoFornecimento, FallbackValue='Distribuidor'}" FontSize="9" FontWeight="Bold" Foreground="{DynamicResource AppAccent}"/>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

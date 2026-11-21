@@ -1,0 +1,86 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="PostoOasis.App.App"
+             RequestedThemeVariant="Dark">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <!-- TEMA ESCURO: Tons Neutros Slate modernos e descanso visual -->
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="AppBackground" Color="#0B1120"/>
+                    <SolidColorBrush x:Key="AppHeaderBg" Color="#111827"/>
+                    <SolidColorBrush x:Key="AppCardBg" Color="#1E293B"/>
+                    <SolidColorBrush x:Key="AppCardBorder" Color="#334155"/>
+                    <SolidColorBrush x:Key="AppItemBg" Color="#0F172A"/>
+                    <SolidColorBrush x:Key="AppTextPrimary" Color="#F8FAFC"/>
+                    <SolidColorBrush x:Key="AppTextSecondary" Color="#94A3B8"/>
+                    <SolidColorBrush x:Key="AppTextMuted" Color="#64748B"/>
+                    <SolidColorBrush x:Key="AppAccent" Color="#10B981"/>
+                    <SolidColorBrush x:Key="AppBadgeBg" Color="#1E293B"/>
+                    <SolidColorBrush x:Key="AppBadgeBorder" Color="#475569"/>
+                    <SolidColorBrush x:Key="AppBadgeText" Color="#CBD5E1"/>
+                    <SolidColorBrush x:Key="AppBtnPrimaryBg" Color="#2563EB"/>
+                    <SolidColorBrush x:Key="AppBtnSuccessBg" Color="#059669"/>
+                    <SolidColorBrush x:Key="AppBtnDangerBg" Color="#DC2626"/>
+                    <SolidColorBrush x:Key="AppBtnNeutralBg" Color="#334155"/>
+                </ResourceDictionary>
+                
+                <!-- TEMA CLARO: Tons Neutros Limpos com ótimo contraste e sem fadiga visual -->
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="AppBackground" Color="#F1F5F9"/>
+                    <SolidColorBrush x:Key="AppHeaderBg" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="AppCardBg" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="AppCardBorder" Color="#CBD5E1"/>
+                    <SolidColorBrush x:Key="AppItemBg" Color="#F8FAFC"/>
+                    <SolidColorBrush x:Key="AppTextPrimary" Color="#0F172A"/>
+                    <SolidColorBrush x:Key="AppTextSecondary" Color="#475569"/>
+                    <SolidColorBrush x:Key="AppTextMuted" Color="#64748B"/>
+                    <SolidColorBrush x:Key="AppAccent" Color="#059669"/>
+                    <SolidColorBrush x:Key="AppBadgeBg" Color="#F1F5F9"/>
+                    <SolidColorBrush x:Key="AppBadgeBorder" Color="#CBD5E1"/>
+                    <SolidColorBrush x:Key="AppBadgeText" Color="#334155"/>
+                    <SolidColorBrush x:Key="AppBtnPrimaryBg" Color="#1D4ED8"/>
+                    <SolidColorBrush x:Key="AppBtnSuccessBg" Color="#047857"/>
+                    <SolidColorBrush x:Key="AppBtnDangerBg" Color="#B91C1C"/>
+                    <SolidColorBrush x:Key="AppBtnNeutralBg" Color="#64748B"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+        
+        <!-- Estilos Globais Padronizados -->
+        <Style Selector="TextBlock.headerTitle">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{DynamicResource AppTextPrimary}" />
+        </Style>
+        <Style Selector="TextBlock.subTitle">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="{DynamicResource AppTextSecondary}" />
+        </Style>
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="{DynamicResource AppCardBg}" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AppCardBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="14" />
+        </Style>
+        <Style Selector="Border.badge">
+            <Setter Property="Background" Value="{DynamicResource AppBadgeBg}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AppBadgeBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="6,2" />
+            <Setter Property="Margin" Value="2,0" />
+        </Style>
+        <Style Selector="Border.badge TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource AppBadgeText}" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+    </Application.Styles>
+</Application>

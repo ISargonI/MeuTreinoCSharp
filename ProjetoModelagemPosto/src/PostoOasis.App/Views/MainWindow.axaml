@@ -1,0 +1,78 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PostoOasis.App.ViewModels"
+        xmlns:views="using:PostoOasis.App.Views"
+        x:Class="PostoOasis.App.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/logo-posto-oasis.png"
+        Title="Auto Posto Oásis - Sistema Integrado de Gestão e Pista (MVC)"
+        Width="1280" Height="820"
+        MinWidth="1050" MinHeight="680"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource AppBackground}">
+
+    <Grid RowDefinitions="58, *">
+        
+        <!-- BARRA SUPERIOR COM BRANDING, STATUS, TEMA E LOGOUT -->
+        <Border Grid.Row="0" Background="{DynamicResource AppHeaderBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="0,0,0,1" Padding="18,6">
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                
+                <!-- Logo e Título -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                    <Image Source="/Assets/logo-posto-oasis.png" Height="36"/>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="AUTO POSTO OÁSIS" FontWeight="Black" FontSize="15" Foreground="{DynamicResource AppAccent}" LetterSpacing="0.8"/>
+                        <TextBlock Text="Arquitetura em Camadas (Padrão MVC)" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Status Global -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" Margin="24,0" HorizontalAlignment="Center">
+                    <TextBlock Text="⚡ Status:" FontWeight="Bold" FontSize="11" Foreground="{DynamicResource AppAccent}"/>
+                    <TextBlock Text="{Binding StatusGlobal}" FontSize="11" Foreground="{DynamicResource AppTextPrimary}" TextTrimming="CharacterEllipsis" MaxWidth="480"/>
+                </StackPanel>
+
+                <!-- Controles do Topo: Alternar Tema, Usuário e Logout -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                    
+                    <!-- Botão Alternar Tema Claro / Escuro -->
+                    <Button Content="{Binding IconeTemaTexto}"
+                            Command="{Binding AlternarTemaCommand}"
+                            Background="{DynamicResource AppCardBorder}"
+                            Foreground="{DynamicResource AppTextPrimary}"
+                            FontSize="11" Padding="10,6" CornerRadius="6" ToolTip.Tip="Alternar Tema Claro / Escuro"/>
+
+                    <!-- Usuário Autenticado -->
+                    <Border Background="{DynamicResource AppCardBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="10,4" IsVisible="{Binding IsUsuarioAutenticado}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="👤" FontSize="13" VerticalAlignment="Center"/>
+                            <StackPanel>
+                                <TextBlock Text="{Binding UsuarioAutenticado.Nome}" FontWeight="Bold" FontSize="11" Foreground="{DynamicResource AppTextPrimary}"/>
+                                <TextBlock Text="{Binding UsuarioAutenticado.Cargo, StringFormat='Perfil: {0}'}" FontSize="10" Foreground="{DynamicResource AppAccent}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Botão Logout -->
+                    <Button Content="Sair ➔" 
+                            Command="{Binding FazerLogoutCommand}"
+                            IsVisible="{Binding IsUsuarioAutenticado}"
+                            Background="{DynamicResource AppBtnDangerBg}" Foreground="White" FontWeight="Bold" FontSize="11" Padding="12,6" CornerRadius="6"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!-- ÁREA CENTRAL DE TELAS ESPECÍFICAS CONFORME PERFIL -->
+        <Grid Grid.Row="1">
+            <views:LoginView IsVisible="{Binding IsTelaLogin}"/>
+            <views:FrentistaView IsVisible="{Binding IsTelaFrentista}"/>
+            <views:CaixaView IsVisible="{Binding IsTelaCaixa}"/>
+            <views:AuxiliarAdmView IsVisible="{Binding IsTelaAuxiliarAdm}"/>
+            <views:GerenteView IsVisible="{Binding IsTelaGerente}"/>
+        </Grid>
+
+    </Grid>
+
+</Window>

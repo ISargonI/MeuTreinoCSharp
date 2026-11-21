@@ -1,0 +1,7 @@
+C:\Users\Adriano\MeuTreinoCSharp\ProjetoModelagemPosto\publish\win-x64\PostoOasis.App.pdb
+C:\Users\Adriano\MeuTreinoCSharp\ProjetoModelagemPosto\publish\win-x64\av_libglesv2.dll
+C:\Users\Adriano\MeuTreinoCSharp\ProjetoModelagemPosto\publish\win-x64\libHarfBuzzSharp.dll
+C:\Users\Adriano\MeuTreinoCSharp\ProjetoModelagemPosto\publish\win-x64\libSkiaSharp.dll
+C:\Users\Adriano\MeuTreinoCSharp\ProjetoModelagemPosto\publish\win-x64\PostoOasis.Core.pdb
+C:\Users\Adriano\MeuTreinoCSharp\ProjetoModelagemPosto\publish\win-x64\PostoOasis.Data.pdb
+C:\Users\Adriano\MeuTreinoCSharp\ProjetoModelagemPosto\publish\win-x64\PostoOasis.App.exe

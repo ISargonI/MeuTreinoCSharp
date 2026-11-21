@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "PostoOasis.Data/1.0.0": {
+        "dependencies": {
+          "PostoOasis.Core": "1.0.0"
+        },
+        "runtime": {
+          "PostoOasis.Data.dll": {}
+        }
+      },
+      "PostoOasis.Core/1.0.0": {
+        "runtime": {
+          "PostoOasis.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PostoOasis.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PostoOasis.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

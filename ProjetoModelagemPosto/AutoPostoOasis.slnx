@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PostoOasis.App/PostoOasis.App.csproj" />
+    <Project Path="src/PostoOasis.Core/PostoOasis.Core.csproj" />
+    <Project Path="src/PostoOasis.Data/PostoOasis.Data.csproj" />
+  </Folder>
+</Solution>

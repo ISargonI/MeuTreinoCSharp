@@ -1,0 +1,110 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PostoOasis.App.ViewModels"
+             x:Class="PostoOasis.App.Views.LoginView"
+             x:DataType="vm:MainWindowViewModel"
+             Background="{DynamicResource AppBackground}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="760" Spacing="20" Margin="20,30">
+            
+            <!-- Cabeçalho com Logotipo do Auto Posto Oásis -->
+            <StackPanel Spacing="6" HorizontalAlignment="Center">
+                <Image Source="/Assets/logo-posto-oasis.png" Height="95" HorizontalAlignment="Center"/>
+                <TextBlock Text="AUTO POSTO OÁSIS" FontSize="22" FontWeight="Black" Foreground="{DynamicResource AppAccent}" HorizontalAlignment="Center" LetterSpacing="1.2"/>
+                <TextBlock Text="Sistema Integrado de Automação, Pista e Conveniência" FontSize="12" Foreground="{DynamicResource AppTextSecondary}" HorizontalAlignment="Center"/>
+                <WrapPanel HorizontalAlignment="Center" Margin="0,4,0,0">
+                    <Border Classes="badge"><TextBlock Text="UC16 / RF16: Autenticação com Senha"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RNF08: Controle de Acesso por Perfil"/></Border>
+                </WrapPanel>
+            </StackPanel>
+
+            <!-- Card Principal de Login -->
+            <Border Classes="card" Padding="24">
+                <StackPanel Spacing="16">
+                    
+                    <TextBlock Text="1. Escolha o Perfil de Trabalho" FontWeight="Bold" FontSize="14" Foreground="{DynamicResource AppTextPrimary}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Selecione abaixo para carregar as permissões e o usuário correspondente:" FontSize="11" Foreground="{DynamicResource AppTextSecondary}" HorizontalAlignment="Center"/>
+
+                    <!-- Grid de Perfis em Cards com Ícones -->
+                    <Grid ColumnDefinitions="*, *, *, *" Margin="0,4">
+                        
+                        <!-- Perfil Frentista -->
+                        <Border Grid.Column="0" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="4">
+                            <StackPanel Spacing="8" HorizontalAlignment="Center">
+                                <TextBlock Text="⛽" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="FRENTISTA" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Pista, Bombas e Fugas" FontSize="10" Foreground="{DynamicResource AppTextSecondary}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                <Button Content="Selecionar Perfil" 
+                                        Command="{Binding SelecionarPerfilLoginCommand}" CommandParameter="Frentista"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" CornerRadius="5" FontSize="10"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Perfil Caixa -->
+                        <Border Grid.Column="1" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="4">
+                            <StackPanel Spacing="8" HorizontalAlignment="Center">
+                                <TextBlock Text="💳" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="CAIXA" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="PDV, Cartão e Vale Ducha" FontSize="10" Foreground="{DynamicResource AppTextSecondary}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                <Button Content="Selecionar Perfil" 
+                                        Command="{Binding SelecionarPerfilLoginCommand}" CommandParameter="Caixa"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" CornerRadius="5" FontSize="10"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Perfil Auxiliar Administrativo / RH -->
+                        <Border Grid.Column="2" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="4">
+                            <StackPanel Spacing="8" HorizontalAlignment="Center">
+                                <TextBlock Text="📋" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="AUX. ADM / RH" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="RH, Ponto e Fornecedores" FontSize="10" Foreground="{DynamicResource AppTextSecondary}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                <Button Content="Selecionar Perfil" 
+                                        Command="{Binding SelecionarPerfilLoginCommand}" CommandParameter="Auxiliar"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" CornerRadius="5" FontSize="10"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Perfil Gerente -->
+                        <Border Grid.Column="3" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="8" Padding="12" Margin="4">
+                            <StackPanel Spacing="8" HorizontalAlignment="Center">
+                                <TextBlock Text="👔" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="GERENTE" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="CRUDs, Preços e Relatórios" FontSize="10" Foreground="{DynamicResource AppTextSecondary}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                <Button Content="Selecionar Perfil" 
+                                        Command="{Binding SelecionarPerfilLoginCommand}" CommandParameter="Gerente"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" CornerRadius="5" FontSize="10"/>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+
+                    <Border Height="1" Background="{DynamicResource AppCardBorder}" Margin="0,6"/>
+
+                    <!-- 2. Formulário de Validação de Senha (Bloqueio sem senha) -->
+                    <StackPanel Spacing="8" MaxWidth="360" HorizontalAlignment="Center">
+                        <TextBlock Text="2. Confirme sua Senha de Acesso [UC16 / RF16]" FontWeight="Bold" FontSize="13" Foreground="{DynamicResource AppTextPrimary}" HorizontalAlignment="Center"/>
+                        
+                        <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="6" Padding="8,6">
+                            <TextBlock Text="{Binding PerfilSelecionadoNome, StringFormat='Operador: {0}'}" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource AppAccent}" HorizontalAlignment="Center"/>
+                        </Border>
+
+                        <TextBox Watermark="Nome de Usuário" Text="{Binding LoginUsuario}"/>
+                        <TextBox Watermark="Senha de Acesso (Senha padrão: 123)" PasswordChar="•" Text="{Binding LoginSenha}"/>
+
+                        <Button Content="Entrar no Sistema (Validar Senha)" 
+                                Command="{Binding FazerLoginCredenciaisCommand}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                Height="36" FontWeight="Bold" Background="{DynamicResource AppBtnSuccessBg}" Foreground="White" CornerRadius="6" FontSize="12"/>
+
+                        <!-- Mensagem de Erro / Feedback -->
+                        <TextBlock Text="{Binding MensagemLogin}" Foreground="#EF4444" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

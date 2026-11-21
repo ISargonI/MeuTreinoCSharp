@@ -1,0 +1,163 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:PostoOasis.App.ViewModels"
+             xmlns:m="using:PostoOasis.Core.Models"
+             x:Class="PostoOasis.App.Views.FrentistaView"
+             x:DataType="vm:MainWindowViewModel"
+             Background="{DynamicResource AppBackground}">
+
+    <ScrollViewer Padding="20">
+        <StackPanel Spacing="16">
+            
+            <!-- Barra Superior da Tela do Frentista com Badges de Casos de Uso -->
+            <Grid ColumnDefinitions="*, Auto">
+                <StackPanel Grid.Column="0" Spacing="4">
+                    <TextBlock Text="Terminal Operacional de Pista - Frentista" Classes="headerTitle"/>
+                    <TextBlock Text="Controle físico das bombas, automação de pulsos, corte de segurança e registro de calotes." Classes="subTitle"/>
+                </StackPanel>
+                
+                <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+                    <Border Classes="badge"><TextBlock Text="UC1 / RF01: Abastecimento em Pista"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RN12: Corte Automático Tanque &lt; 4%"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RN09: Calote / Vencimento Dia 05"/></Border>
+                    <Border Classes="badge"><TextBlock Text="RF17: Ponto Eletrônico"/></Border>
+                </WrapPanel>
+            </Grid>
+
+            <!-- Feedback Operacional -->
+            <Border Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppAccent}" BorderThickness="1" CornerRadius="6" Padding="12,8"
+                    IsVisible="{Binding MensagemFrentista, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                <Grid ColumnDefinitions="Auto, *">
+                    <TextBlock Grid.Column="0" Text="📢 " FontSize="14"/>
+                    <TextBlock Grid.Column="1" Text="{Binding MensagemFrentista}" Foreground="{DynamicResource AppAccent}" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <!-- Painel de Ponto Eletrônico e Registro de Fuga -->
+            <Grid ColumnDefinitions="*, *">
+                
+                <!-- Bater Ponto (RF17) -->
+                <Border Grid.Column="0" Classes="card" Margin="0,0,8,0">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Marcação de Ponto Eletrônico da Pista [RF17]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                        <TextBlock Text="Registre os horários de início, intervalos e término de jornada:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                        <Grid ColumnDefinitions="*, *, *, *">
+                            <Button Grid.Column="0" Content="Entrada" Margin="0,0,3,0"
+                                    Command="{Binding BaterPontoFrentistaCommand}" CommandParameter="Entrada"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnSuccessBg}" Foreground="White" FontSize="11" Padding="0,6"/>
+                            <Button Grid.Column="1" Content="Almoço" Margin="2,0,2,0"
+                                    Command="{Binding BaterPontoFrentistaCommand}" CommandParameter="SaidaIntervalo"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="11" Padding="0,6"/>
+                            <Button Grid.Column="2" Content="Retorno" Margin="2,0,2,0"
+                                    Command="{Binding BaterPontoFrentistaCommand}" CommandParameter="RetornoIntervalo"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="11" Padding="0,6"/>
+                            <Button Grid.Column="3" Content="Saída" Margin="3,0,0,0"
+                                    Command="{Binding BaterPontoFrentistaCommand}" CommandParameter="Saida"
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnDangerBg}" Foreground="White" FontSize="11" Padding="0,6"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Registro Rápido de Fuga sem Pagar (RN09) -->
+                <Border Grid.Column="1" Classes="card" Margin="8,0,0,0">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Registro de Fuga sem Pagar (Calote) [RN09]" FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AppTextPrimary}"/>
+                        <TextBlock Text="Veículo fugiu? Anote a placa/CPF. Débito lançado para vencimento até dia 5:" FontSize="10" Foreground="{DynamicResource AppTextSecondary}"/>
+                        <Grid ColumnDefinitions="*, *, Auto">
+                            <TextBox Grid.Column="0" Watermark="Placa ou CPF" Text="{Binding PlacaFugaFrentista}" Margin="0,0,6,0" FontSize="11"/>
+                            <TextBox Grid.Column="1" Watermark="Valor (R$)" Text="{Binding ValorFugaFrentista}" Margin="0,0,6,0" FontSize="11"/>
+                            <Button Grid.Column="2" Content="Registrar Calote" Command="{Binding RegistrarFugaFrentistaCommand}" Background="{DynamicResource AppBtnDangerBg}" Foreground="White" FontSize="11" Padding="10,6"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+            <!-- Mostradores das 6 Bombas (Metáfora do Mundo Real - RF01 / RN12) -->
+            <TextBlock Text="Bombas de Combustível da Pista (Automação de Contagem Contínua)" FontWeight="Bold" FontSize="14" Foreground="{DynamicResource AppTextPrimary}"/>
+
+            <ItemsControl ItemsSource="{Binding BombasFrentista}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="m:Bomba">
+                        <Border Classes="card" Width="310" Margin="0,0,14,14">
+                            <StackPanel Spacing="8">
+                                
+                                <!-- Cabeçalho da Bomba com Tipo de Combustível e Preço -->
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="{Binding Identificador}" FontWeight="Black" FontSize="15" Foreground="{DynamicResource AppTextPrimary}"/>
+                                        <TextBlock Text="{Binding CombustivelAssociado.Nome}" Foreground="{DynamicResource AppAccent}" FontWeight="Bold" FontSize="11"/>
+                                    </StackPanel>
+                                    <Border Grid.Column="1" Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1" CornerRadius="4" Padding="6,3">
+                                        <TextBlock Text="{Binding CombustivelAssociado.PrecoLitro, StringFormat='R$ {0:F2}/L'}" 
+                                                   Foreground="{DynamicResource AppTextPrimary}" FontSize="11" FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+
+                                <!-- Mostrador LCD Digital (RF01 - Metáfora Real) -->
+                                <Border Background="{DynamicResource AppItemBg}" CornerRadius="6" Padding="12,10" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1">
+                                    <Grid ColumnDefinitions="*, *">
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="LITROS BOMBEADOS" FontSize="9" Foreground="{DynamicResource AppTextMuted}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding LitrosAbastecidos, StringFormat='{}{0:F2} L'}" 
+                                                       FontSize="18" FontWeight="Black" Foreground="{DynamicResource AppAccent}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                            <TextBlock Text="VALOR A PAGAR" FontSize="9" Foreground="{DynamicResource AppTextMuted}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding ValorTotalCalculado, StringFormat='R$ {0:F2}'}" 
+                                                       FontSize="18" FontWeight="Black" Foreground="{DynamicResource AppAccent}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+
+                                <!-- Status Visual da Bomba e Bloqueio de Segurança RN12 -->
+                                <Border CornerRadius="4" Padding="6,3" HorizontalAlignment="Stretch"
+                                        Background="{DynamicResource AppItemBg}" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="1">
+                                    <TextBlock Text="{Binding TextoStatus}" FontSize="10" FontWeight="Bold" 
+                                               Foreground="{DynamicResource AppTextPrimary}" HorizontalAlignment="Center"/>
+                                </Border>
+
+                                <!-- Ações da Bomba pelo Frentista com Automação de Iniciar/Parar Contagem -->
+                                <Grid ColumnDefinitions="*, *" Margin="0,2,0,0">
+                                    <!-- Botão de Fluxo Livre com Início/Pausa/Retomada Contínua -->
+                                    <Button Grid.Column="0" Content="{Binding TextoBotaoFluxo}" Margin="0,0,3,0"
+                                            Command="{Binding $parent[UserControl].DataContext.AlternarFluxoLivreFrentistaCommand}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnPrimaryBg}" Foreground="White" FontSize="10" Padding="0,6"/>
+                                    
+                                    <!-- Pré-fixar R$ 50 -->
+                                    <Button Grid.Column="1" Content="Pré-fixar R$ 50" Margin="3,0,0,0"
+                                            Command="{Binding $parent[UserControl].DataContext.LiberarBombaPredeterminadaFrentistaCommand}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="10" Padding="0,6"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="*, *" Margin="0,2,0,0">
+                                    <!-- Simular Pulso Individual (+1L) -->
+                                    <Button Grid.Column="0" Content="+1 L (Pulsos)" Margin="0,0,3,0"
+                                            Command="{Binding $parent[UserControl].DataContext.SimularPulsosFrentistaCommand}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnNeutralBg}" Foreground="White" FontSize="10" Padding="0,6"/>
+                                    
+                                    <!-- Travar / Guardar Bico no Coldre -->
+                                    <Button Grid.Column="1" Content="🔒 Coldre (Terminar)" Margin="3,0,0,0"
+                                            Command="{Binding $parent[UserControl].DataContext.GuardarBicoColdreFrentistaCommand}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="{DynamicResource AppBtnDangerBg}" Foreground="White" FontSize="10" Padding="0,6"/>
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>
