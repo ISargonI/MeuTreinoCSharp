@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CooperativaEntregas/CooperativaEntregas.csproj" />
+  <Project Path="GestaoOficina/GestaoOficina.csproj" />
+  <Project Path="SistemaCursos/SistemaCursos.csproj" />
+</Solution>
